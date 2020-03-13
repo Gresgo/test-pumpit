@@ -5,13 +5,21 @@ import android.content.Context
 
 class App : Application() {
 
-    private lateinit var context: Context
+    /**
+     * context singleton
+     */
+    private companion object {
+        lateinit var context: Context
+    }
 
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
     }
 
+    /**
+     * able to get appContext from everywhere
+     */
     fun getContext() = context
 
 }
