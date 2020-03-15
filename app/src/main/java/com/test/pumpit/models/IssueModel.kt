@@ -1,14 +1,26 @@
 package com.test.pumpit.models
 
-/**
- * здесь было 2 дата клосса, которые наследовались от одного, но в итоге они отличались всего 1 полем и вот...
- */
 data class IssueModel(
     val title: String,
     val state: String,
     val user: User,
     val number: Int,
-    val date: String
+    val pull_request: Map<String, String> ?= null //checking if its pull request or issue
+)
+
+data class ExtendedIssueModel(
+    val title: String,
+    val state: String,
+    val user: User,
+    val number: Int,
+    val created_at: String,
+    val body: String,
+    val labels: ArrayList<LabelModel>
+)
+
+data class LabelModel(
+    val name: String,
+    val color: String
 )
 
 data class User(

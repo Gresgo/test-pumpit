@@ -32,11 +32,10 @@
 
                 <ImageView
                     android:id="@+id/issue_status_checkbox"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="6dp"
                     android:layout_marginEnd="5dp"
-                    android:contentDescription="status"
                     android:src='@{issueItem.state.equals("open")? @drawable/circle_open : @drawable/circle_closed}' />
 
                 <TextView

@@ -2,12 +2,14 @@ package com.test.pumpit.ui.issues
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.test.pumpit.models.ExtendedIssueModel
 import com.test.pumpit.models.IssueModel
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface GithubApi {
@@ -33,14 +35,15 @@ interface GithubApi {
      * maybe 2 requests are better but i like this way more
      */
 
-//    @GET("/repos/android/sunflower/issues")
-//    fun issueById(@Query("number") number: Int) : Observable<IssueModel>
+    @GET("/repos/android/sunflower/issues/{number}")
+    fun issueById(
+        @Path("number")
+        number: Int
+    ) : Observable<ExtendedIssueModel>
 
     @GET("/repos/android/sunflower/issues")
     fun issues(
         @Query("state")
-        state: String,
-        @Query("number")
-        number: Int?
+        state: String
     ) : Observable<ArrayList<IssueModel>>
 }

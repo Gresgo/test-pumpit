@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="issue"
+            type="com.test.pumpit.models.ExtendedIssueModel" />
+
+        <variable
+            name="viewModel"
+            type="com.test.pumpit.ui.issues.IssuesViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        >
+
+        <TextView
+            android:id="@+id/selected_issue_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normalTextSize"
+            android:textColor="@color/black"
+            android:text="@{viewModel.currentIssue.title}"
+            />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/black"
+                >
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src='@{viewModel.currentIssue.state.equals("open")? @drawable/circle_open : @drawable/circle_closed}'
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{" " + viewModel.currentIssue.state}'
+                    android:textColor="@color/white"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{" created at " + viewModel.currentIssue.created_at}'
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/issue_creator_avatar"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                />
+
+            <TextView
+                android:id="@+id/issue_creator_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/normalTextSize"
+                android:textColor="@color/black"
+                android:text="@{viewModel.currentIssue.user.login}"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="0.9"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/issue_labels_recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_margin="5dp"
+            android:id="@+id/issue_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normalTextSize"
+            android:textColor="@color/black"
+            android:text="@{viewModel.currentIssue.body}"
+            />
+        
+    </LinearLayout>
+    
+</layout>
