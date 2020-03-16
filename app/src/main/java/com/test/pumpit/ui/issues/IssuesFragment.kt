@@ -14,8 +14,6 @@ import com.test.pumpit.R
 import com.test.pumpit.adapters.IssuesAdapter
 import com.test.pumpit.application.App
 import com.test.pumpit.databinding.FragmentIssuesBinding
-import com.test.pumpit.ui.MainActivity
-import com.test.pumpit.ui.SelectedIssueActivity
 
 class IssuesFragment : Fragment(), IssuesAdapter.OnIssueClickListener {
 

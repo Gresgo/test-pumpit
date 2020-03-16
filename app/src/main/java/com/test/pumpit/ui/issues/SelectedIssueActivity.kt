@@ -1,12 +1,12 @@
-package com.test.pumpit.ui
+package com.test.pumpit.ui.issues
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.test.pumpit.R
 import com.test.pumpit.databinding.FragmentSelectedIssueBinding
-import com.test.pumpit.ui.issues.IssuesViewModel
 
 class SelectedIssueActivity : AppCompatActivity() {
 
@@ -21,6 +21,8 @@ class SelectedIssueActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.fragment_selected_issue)
         binding.viewModel = viewModel
         binding.executePendingBindings()
+
+        binding.issueBody.movementMethod = ScrollingMovementMethod()
 
         val issueId = intent.getIntExtra("issueId", 0)
 

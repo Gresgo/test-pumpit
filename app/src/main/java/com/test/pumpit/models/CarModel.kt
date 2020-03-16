@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName
  */
 data class CarModel(
     @Expose
-    val latitude: Float,
+    val latitude: Double,
     @Expose
-    val longitude: Float,
+    val longitude: Double,
     val pin_img: String,
     val color: String,
     @Expose
