@@ -32,19 +32,27 @@ class MainActivity : AppCompatActivity() {
 
         bottom_nav_bar.setOnNavigationItemSelectedListener(navListener)
 
-        issuesFragment = IssuesFragment()
-        youdriveFragment = YoudriveFragment()
+        //TODO: find a better way
+        if (savedInstanceState == null) {
+            issuesFragment = IssuesFragment()
+            youdriveFragment = YoudriveFragment()
 
-        fm.beginTransaction().add(R.id.main_fragment_host, youdriveFragment, TAG_YOUDRIVE).hide(youdriveFragment).commit()
-        fm.beginTransaction().add(R.id.main_fragment_host, issuesFragment, TAG_ISSUES).commit()
+            fm.beginTransaction().add(R.id.main_fragment_host, youdriveFragment, TAG_YOUDRIVE).hide(youdriveFragment).commit()
+            fm.beginTransaction().add(R.id.main_fragment_host, issuesFragment, TAG_ISSUES).commit()
+        } else {
+            issuesFragment = fm.findFragmentByTag(TAG_ISSUES)!!
+            youdriveFragment = fm.findFragmentByTag(TAG_YOUDRIVE)!!
+        }
+
     }
 
     /**
      * bottom bar tap custom listener
+     * this need to be changed
      */
     private val navListener =
         BottomNavigationView.OnNavigationItemSelectedListener {item ->  
-
+            //TODO: change?
             when (item.itemId) {
                 R.id.nav_issues -> {
                     fm.beginTransaction().hide(youdriveFragment).show(issuesFragment).commit()

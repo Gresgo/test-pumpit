@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.squareup.picasso.Picasso
 import com.test.pumpit.models.ExtendedIssueModel
 import com.test.pumpit.models.IssueModel
+import com.test.pumpit.models.LabelModel
 import com.test.pumpit.providers.GithubRepositoryProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -21,14 +22,16 @@ class IssuesViewModel : ViewModel() {
     //TODO: pagination
     val issuesList = MutableLiveData<List<IssueModel>>()
     val currentIssue = ObservableField<ExtendedIssueModel>()
+    //TODO: fix THIS ->
+    val labelsList = MutableLiveData<ArrayList<LabelModel>>()
     private val repository = GithubRepositoryProvider.provideRepository()
 
     /**
      * called when vm is created
      */
-    init {
-        loadIssues()
-    }
+//    init {
+//        loadIssues()
+//    }
 
     /**
      * load all issues with rx
@@ -59,6 +62,7 @@ class IssuesViewModel : ViewModel() {
             .subscribe({ result ->
                 result.created_at = makeData(result.created_at!!)
                 currentIssue.set(result)
+                labelsList.value = result.labels
                 Log.i("github", "issue loading successful")
             }, { error ->
                 Log.i("github", "issue loading failed")

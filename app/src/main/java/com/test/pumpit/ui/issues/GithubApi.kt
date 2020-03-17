@@ -44,6 +44,8 @@ interface GithubApi {
     @GET("/repos/android/sunflower/issues")
     fun issues(
         @Query("state")
-        state: String
+        state: String,
+        @Query("per_page") //затычка в максимум(100) итемов
+        per_page: Int
     ) : Observable<ArrayList<IssueModel>>
 }

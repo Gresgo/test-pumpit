@@ -10,7 +10,7 @@ class IssuesRepository {
     private val githubApi = GithubApi.create()
 
     fun getAllIssues() : Observable<ArrayList<IssueModel>> {
-        return githubApi.issues("all")
+        return githubApi.issues("all", 100)
     }
 
     fun getIssueById(id: Int) : Observable<ExtendedIssueModel> {
