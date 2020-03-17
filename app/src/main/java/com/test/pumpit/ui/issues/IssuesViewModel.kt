@@ -68,7 +68,7 @@ class IssuesViewModel : ViewModel() {
 
     private fun makeData(date: String) : String {
         val d = DateTime.parse(date)
-        return d.dayOfMonth.toString() + " " + DateFormatSymbols().months[d.monthOfYear] + ", " + d.year.toString()
+        return d.dayOfMonth.toString() + " " + DateFormatSymbols().months[d.monthOfYear - 1] + ", " + d.year.toString()
     }
 
 }

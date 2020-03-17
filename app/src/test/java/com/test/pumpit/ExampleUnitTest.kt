@@ -18,8 +18,8 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         //val date = LocalDate.parse("2020-03-13T08:11:06Z")
-        val date = DateTime.parse("2020-03-13T08:11:06Z")
-        print(date.dayOfMonth.toString() + " " + DateFormatSymbols().months[date.monthOfYear]  + ", " + date.year.toString())
+        val date = DateTime.parse("2019-12-17T09:17:37Z")
+        print(date.dayOfMonth.toString() + " " + DateFormatSymbols().months[date.monthOfYear - 1]  + ", " + date.year.toString())
         assertEquals(4, 2 + 2)
     }
 }
