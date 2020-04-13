@@ -1,5 +1,6 @@
 package com.test.pumpit.ui.issues
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,12 +16,19 @@ import com.test.pumpit.R
 import com.test.pumpit.adapters.IssuesAdapter
 import com.test.pumpit.application.App
 import com.test.pumpit.databinding.FragmentIssuesBinding
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 
 class IssuesFragment : Fragment(), IssuesAdapter.OnIssueClickListener {
 
     private lateinit var binding: FragmentIssuesBinding
     private lateinit var issuesViewModel: IssuesViewModel
     private val issuesAdapter = IssuesAdapter(arrayListOf(), this)
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

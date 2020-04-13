@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+ext {
+    daggerVer = '2.27'
+}
+
 android {
     compileSdkVersion 28
 
@@ -61,6 +65,12 @@ dependencies {
 
     //rxAndroid
     implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    //dagger
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
+    implementation "com.google.dagger:dagger:$daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$daggerVer"
 
     //tests
     testImplementation 'junit:junit:4.12'

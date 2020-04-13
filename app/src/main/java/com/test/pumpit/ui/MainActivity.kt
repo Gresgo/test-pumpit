@@ -7,13 +7,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.pumpit.R
 import com.test.pumpit.ui.issues.IssuesFragment
 import com.test.pumpit.ui.youdrive.YoudriveFragment
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 /**
  * launches when the app starts
  * this needs a little changes
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     private val fm = supportFragmentManager
     private lateinit var issuesFragment: Fragment
@@ -21,9 +26,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var TAG_ISSUES: String
     private lateinit var TAG_YOUDRIVE: String
 
+    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         TAG_ISSUES = applicationContext.getString(R.string.title_issues)
         TAG_YOUDRIVE = applicationContext.getString(R.string.title_youDrive)
